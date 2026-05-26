@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"User\"\\); cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git init; git add .; git commit -m \"Initial commit\")",
+      "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"User\"\\); git config --global user.email \"nikavinnikova@gmail.com\"; git config --global user.name \"Nika Vinnikova\"; cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git add .; git commit -m \"Initial commit\")"
+    ]
+  }
+}
