@@ -6,18 +6,15 @@
 
 ---
 
-## Table of Contents
+## Document Map
 
-1. [Problem Statement](#1-problem-statement)
-2. [User Personas](#2-user-personas)
-3. [Jobs To Be Done](#3-jobs-to-be-done)
-4. [Competitive Landscape](#4-competitive-landscape)
-5. [Value Proposition](#5-value-proposition)
-6. [Lean Canvas](#6-lean-canvas)
-7. [Assumption Log](#7-assumption-log)
-8. [North Star & Success Metrics](#8-north-star--success-metrics)
-9. [Risk Register](#9-risk-register)
-10. [Open Questions](#10-open-questions)
+| Document | Contents | Status |
+|---|---|---|
+| [personas.md](personas.md) | Magda (PL) + Anna (EU) | Draft — unvalidated |
+| [competitive-landscape.md](competitive-landscape.md) | Market map, positioning, Vakhula Style reference | Initial |
+| [assumption-log.md](assumption-log.md) | 6 hypotheses with validation status | All unvalidated |
+| [risk-register.md](risk-register.md) | 6 risks with mitigation plans | All open |
+| [open-questions.md](open-questions.md) | Product / Tech / GTM questions | All open |
 
 ---
 
@@ -33,49 +30,7 @@ Professional styling help is perceived as expensive and inaccessible. Free fashi
 
 ---
 
-## 2. User Personas
-
-### Persona A — "Magda" *(Priority: Polish market)*
-
-| Attribute | Detail |
-|---|---|
-| **Age** | 28–38 |
-| **Location** | Warsaw, Kraków, Wrocław |
-| **Job** | Office / mid-management / remote |
-| **Income** | 4,000–8,000 PLN/month |
-| **Clothing budget** | 300–700 PLN/month |
-| **Social media** | Instagram, Pinterest, occasionally TikTok |
-| **Content language** | Comfortable reading English |
-
-**Pain:** Buys items separately — they don't work together. Knows Zara / Mango but not better alternatives. Feels like she spends money mindlessly.
-
-**Motivation:** Wants to look "put together" at work and in life without spending hours or too much money.
-
-**Barrier to paying:** *"I already follow Instagram for free — why pay?"*
-
----
-
-### Persona B — "Anna" *(Scale: European market)*
-
-| Attribute | Detail |
-|---|---|
-| **Age** | 35–50 |
-| **Location** | Berlin, Amsterdam, Prague, Riga |
-| **Job** | Business owner / senior position |
-| **Income** | Above country average |
-| **Clothing budget** | €200–500/month |
-| **Social media** | Instagram, Pinterest |
-| **Content language** | English — comfortable |
-
-**Pain:** No time to research style herself. Image matters professionally. A personal stylist feels excessive but she wants someone to "think for her."
-
-**Motivation:** Wants to look modern and appropriate — in meetings, while travelling, in everyday life.
-
-**Barrier to paying:** Trust — *"Who is behind this and how good is it really?"*
-
----
-
-## 3. Jobs To Be Done
+## 2. Jobs To Be Done
 
 The user "hires" this product to:
 
@@ -90,62 +45,12 @@ The user "hires" this product to:
 
 ---
 
-## 4. Competitive Landscape
-
-### Primary Reference — Vakhula Style
-
-| Parameter | Vakhula Style |
-|---|---|
-| **Platform** | Telegram |
-| **Language** | Russian |
-| **Format** | Curated picks, capsules, personal recommendations |
-| **Monetisation** | Paid closed channel |
-| **Strength** | Personal voice, trust, strong aesthetic |
-| **Weakness** | Single language, single market, no AI/automation |
-
-**Takeaway:** The model works — people pay for curated style content in Telegram. The goal is to take this model to the English-language European market with stronger infrastructure.
-
----
-
-### English-Language Market Map
-
-| Product | Platform | Model | Key Weakness |
-|---|---|---|---|
-| Who What Wear | Web / Instagram | Free + ads | Mass market, impersonal |
-| The Everygirl | Web / Newsletter | Free + affiliates | No personalisation |
-| Substack stylists | Substack | Subscription $5–15/mo | No community, no bot |
-| Stitch Fix | App | Personal shopping service | Expensive, US only |
-| Stylebook App | App | One-time purchase | No content, tool only |
-| Closed Pinterest boards | Pinterest | Free | No explanation, no context |
-
----
-
-### Positioning Map
-
-```
-                    PERSONAL / CURATED
-                            ▲
-                            │
-           [This Product]   │        [Stitch Fix]
-                            │
-AFFORDABLE ◄────────────────┼────────────────► EXPENSIVE
-                            │
-   [Who What Wear]          │    [Personal Stylist]
-   [The Everygirl]          │
-                            ▼
-                     MASS / GENERIC
-```
-
-> **Conclusion:** The quadrant "affordable + personal" in English is empty. This is the opportunity.
-
----
-
-## 5. Value Proposition
+## 3. Value Proposition
 
 ### One-liner
 > **"Your personal style editor in your pocket — capsules, picks, and real advice, without the stylist price tag."**
 
-### Differentiation Table
+### Differentiation
 
 | What | Why it matters |
 |---|---|
@@ -158,7 +63,7 @@ AFFORDABLE ◄────────────────┼─────
 
 ---
 
-## 6. Lean Canvas
+## 4. Lean Canvas
 
 | Block | Content |
 |---|---|
@@ -174,22 +79,7 @@ AFFORDABLE ◄────────────────┼─────
 
 ---
 
-## 7. Assumption Log
-
-Hypotheses accepted as true — **must be validated** before or immediately after launch.
-
-| # | Hypothesis | Risk if Wrong | How to Validate |
-|---|---|---|---|
-| A1 | European women will pay for style content in Telegram | 🔴 Critical — no business | Presale or waitlist before launch |
-| A2 | English is sufficient for the Polish market as a starting point | 🟡 Medium — slower growth | Survey 20 Polish women |
-| A3 | Instagram/Pinterest → Telegram conversion funnel works | 🔴 Critical — no traffic | Small-budget traffic test |
-| A4 | AI bot reduces operational load without quality loss | 🟡 Medium — more manual work | Bot prototype for month 1 |
-| A5 | Closed club creates enough perceived value vs free content | 🔴 Critical — no conversion | A/B test of offer framing |
-| A6 | Single editorial voice scales without burnout | 🟡 Medium — sustainability risk | Content plan 3 months ahead |
-
----
-
-## 8. North Star & Success Metrics
+## 5. North Star & Success Metrics
 
 ### North Star Metric
 > **Number of active paid subscribers who renew after month 1**
@@ -208,40 +98,6 @@ This is the single metric that confirms: the product is needed, the content work
 
 ---
 
-## 9. Risk Register
-
-| # | Risk | Probability | Impact | Mitigation |
-|---|---|---|---|---|
-| R1 | Low willingness to pay for Telegram content | 🟡 Medium | 🔴 High | Validate with presale before building |
-| R2 | Traffic funnel from Instagram doesn't convert | 🟡 Medium | 🔴 High | Test with €100–200 ad budget early |
-| R3 | Content volume leads to creator burnout | 🟡 Medium | 🟡 Medium | Batch content, build 4-week buffer |
-| R4 | AI bot technical complexity delays launch | 🟢 Low | 🟡 Medium | Use off-the-shelf bot (Tribute, Subbot) for MVP |
-| R5 | Competitors copy format quickly | 🟢 Low | 🟡 Medium | Move fast, build community loyalty early |
-| R6 | Polish market needs local language sooner than expected | 🟡 Medium | 🟡 Medium | Monitor engagement, add PL tier in month 3–6 |
-
----
-
-## 10. Open Questions
-
-These must be answered before moving to the Definition phase:
-
-**Product**
-- [ ] What exactly is included in the free channel vs closed club?
-- [ ] How often is content published? (frequency per week)
-- [ ] What does Premium consultation look like — async chat, video call, review?
-
-**Tech**
-- [ ] Which AI bot platform? (Tribute / Subbot / custom Telegram bot)
-- [ ] How are guides delivered — scheduled messages, PDF, pinned posts?
-- [ ] Payment infrastructure — Stripe, crypto, local Polish payment methods?
-
-**Go-to-Market**
-- [ ] What is the presale mechanic — waitlist, founding member price, limited spots?
-- [ ] Who runs Instagram/Pinterest — same person as Telegram or separate?
-- [ ] What is the content strategy for attracting first 1,000 free subscribers?
-
----
-
 ## Summary
 
 | | |
@@ -256,4 +112,5 @@ These must be answered before moving to the Definition phase:
 
 ---
 
-*Discovery phase complete. Next: Definition — MVP scope, monetisation tiers, content strategy.*
+*Discovery phase complete. Next: Definition — MVP scope, monetisation tiers, content strategy.*  
+*Full detail in linked documents above.*
