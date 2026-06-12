@@ -4,139 +4,114 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**TestLand** is a static landing page with no build tools, frameworks, or dependencies. It runs directly in any browser.
+This repository has two layers:
 
-This repository also contains product documentation for a Style Subscription Platform (Telegram channel + AI bot), located in `docs/`.
+1. **TestLand** — a static landing page (`index.html`, `styles.css`, `script.js`). No build tools, no dependencies, runs directly in any browser.
+2. **Product docs** — Discovery-phase documentation for a Style Subscription Platform (English Telegram channel + AI bot) in `docs/`.
 
-## Running the Project
+## Running the Site
 
-Open `index.html` directly in a browser — no server needed. In VS Code, use the **Live Server** extension for auto-reload on save.
+Open `index.html` directly in a browser. In VS Code, use the **Live Server** extension for auto-reload on save. No server, no build step.
 
-## Architecture
+## Site Architecture
 
-Three files make up the entire site:
+Three files:
 
-- [index.html](index.html) — page structure with 5 sections: Navbar, Hero, Features, Pricing, Contact, Footer. All sections use anchor IDs for smooth-scroll navigation.
-- [styles.css](styles.css) — all styles. Uses CSS custom properties (defined in `:root`) for the color palette. Layout is CSS Grid (`features-grid`, `pricing-grid`) and Flexbox (navbar). Responsive breakpoint at `768px`.
-- [script.js](script.js) — vanilla JS only. Handles smooth scroll, contact form submission (currently just an alert), scroll-triggered `fadeInUp` animations via `IntersectionObserver`, and pricing button click alerts.
+- [index.html](index.html) — 5 sections: Navbar, Hero, Features, Pricing, Contact, Footer. Anchor IDs used for smooth-scroll.
+- [styles.css](styles.css) — CSS custom properties in `:root`, CSS Grid (`features-grid`, `pricing-grid`), Flexbox (navbar), responsive breakpoint at `768px`.
+- [script.js](script.js) — smooth scroll via `querySelector`, `IntersectionObserver` for `fadeInUp` animations on `.feature-card` and `.pricing-card`, contact form alert + reset, pricing button alerts.
 
-## Design Tokens (CSS Variables)
+## Design Tokens
 
 | Variable | Value | Usage |
 |---|---|---|
 | `--primary-color` | `#6366f1` | Indigo — buttons, links, accents |
 | `--secondary-color` | `#ec4899` | Pink — hero gradient end, hover states |
 | `--dark-bg` | `#0f172a` | Footer background |
-| `--light-bg` | `#f8fafc` | Features & Contact section backgrounds |
+| `--light-bg` | `#f8fafc` | Features & Contact backgrounds |
 
-## Key Patterns
-
-- The `.featured` class on a `.pricing-card` applies the highlighted/scaled style to the middle pricing tier.
-- Scroll animations work by setting `opacity: 0` on `.feature-card` and `.pricing-card` in JS, then applying `fadeInUp` via `IntersectionObserver` when elements enter the viewport.
-- The contact form submission is not wired to any backend — it shows an alert and resets the form.
+The `.featured` class on `.pricing-card` scales and highlights the middle pricing tier.
 
 ---
 
 ## Autonomy Rules
 
 **Act without asking for confirmation** on all standard operations:
-- Creating, editing, or deleting files I created in the current session
-- Writing documentation, updating existing docs
+- Creating, editing, or deleting files created in the current session
+- Writing and updating documentation
 - Running `git add`, `git commit`, `git push` to feature branches
 - Installing dependencies, running scripts
 
 **STOP and confirm before:**
 - `git push --force` or `git reset --hard` to any branch
-- `git push` directly to `main` (bypassing branch workflow — see below)
-- Deleting files or folders that existed before the current session and were not created by me
-- Any operation that cannot be undone in under 30 seconds
+- `git push` directly to `main` (bypass of branch workflow)
+- Deleting files or folders that existed before the current session and were not created by Claude
 
 ---
 
 ## Git & GitHub Workflow
 
-### Setup
+### Environment Setup
+
+Always set before any git operation in this session:
+```powershell
+$env:PATH = $env:PATH + ";C:\Program Files\Git\bin"
+$env:GIT_SSH = "C:\Program Files\Git\usr\bin\ssh.exe"
+```
+
 - Remote: `git@github.com:NikaVinn/Project_Nika.git`
-- Default branch: `main` (protected — never push directly)
-- SSH key location: `C:\Users\nikav\.ssh\id_ed25519`
-- Git binary: `C:\Program Files\Git\bin\git.exe`
-- SSH binary: `C:\Program Files\Git\usr\bin\ssh.exe`
-- Always set before git operations: `$env:PATH = $env:PATH + ";C:\Program Files\Git\bin"; $env:GIT_SSH = "C:\Program Files\Git\usr\bin\ssh.exe"`
+- Default branch: `main` — **never push directly to main**
+- SSH key: `C:\Users\nikav\.ssh\id_ed25519`
 
 ### Branch Convention
 
-Every unit of work goes in its own branch. Never commit directly to `main`.
+Every task gets its own branch. Branch naming:
 
-**Branch naming:**
 ```
-docs/<topic>        # documentation work
-feature/<topic>     # new features or product artifacts
-fix/<topic>         # corrections to existing content
-research/<topic>    # exploratory / spike work
-```
-
-**Examples:**
-```
-docs/definition-mvp
-docs/personas-validation
-feature/bot-spec
-fix/lean-canvas-pricing
+docs/<topic>       # documentation work
+feature/<topic>    # new features or product artifacts
+fix/<topic>        # corrections
+research/<topic>   # exploratory work
+chore/<topic>      # tooling, config, CLAUDE.md
 ```
 
-### Workflow (every session)
+### Workflow Per Session
 
-1. **Start:** create or switch to a feature branch
-   ```powershell
-   git checkout -b docs/topic-name
-   ```
+```powershell
+# 1. Create branch
+git checkout -b docs/topic-name
 
-2. **Work:** commit frequently with clear messages
-   ```
-   git add .
-   git commit -m "type: short description"
-   ```
+# 2. Work and commit
+git add .
+git commit -m "docs: short description"
 
-3. **Push:** push the branch to GitHub (not main)
-   ```
-   git push origin docs/topic-name
-   ```
+# 3. Push branch (not main)
+git push origin docs/topic-name
+```
 
-4. **Done:** tell the user — "Branch pushed. Open PR on GitHub to merge to main."
-   The user merges via GitHub UI when ready.
+After push: tell the user "Branch pushed — open PR on GitHub to merge to main."  
+**Only the user merges to main via GitHub Pull Request UI.**
 
 ### Commit Message Convention
 
-```
-docs: update assumption log with A1 validation result
-feat: add bot platform comparison table
-fix: correct pricing tier in lean canvas
-research: competitive analysis of EU Telegram channels
-```
+Format: `type: imperative description` (lowercase, no period)
 
-Format: `type: imperative description` (no capital, no period)  
-Types: `docs`, `feat`, `fix`, `refactor`, `research`, `chore`
+Types: `docs` · `feat` · `fix` · `refactor` · `research` · `chore`
 
-Always end commits with:
+Always end commit messages with:
 ```
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ```
-
-### Merging to main
-
-**Only the user merges to main** — via GitHub Pull Request UI.  
-Claude never merges or pushes to main directly.
 
 ---
 
 ## Docs Structure
 
-Product documentation lives in `docs/`:
-
-| File | Contents |
-|---|---|
-| [docs/discovery.md](docs/discovery.md) | Index + stable artifacts (Problem, JTBD, Value Prop, Lean Canvas, Metrics) |
-| [docs/personas.md](docs/personas.md) | User personas — Magda (PL) + Anna (EU) |
-| [docs/competitive-landscape.md](docs/competitive-landscape.md) | Market map, competitors, positioning |
-| [docs/assumption-log.md](docs/assumption-log.md) | 6 hypotheses with live validation status |
-| [docs/risk-register.md](docs/risk-register.md) | 6 risks with mitigation + status |
-| [docs/open-questions.md](docs/open-questions.md) | Open Product / Tech / GTM questions |
+| File | Contents | Lifecycle |
+|---|---|---|
+| [docs/discovery.md](docs/discovery.md) | Index + Problem Statement, JTBD, Value Prop, Lean Canvas, Metrics | Stable |
+| [docs/personas.md](docs/personas.md) | Magda (PL) + Anna (EU) with validation status | Updated as validated |
+| [docs/competitive-landscape.md](docs/competitive-landscape.md) | Market map, positioning, Vakhula Style reference | Expanded over time |
+| [docs/assumption-log.md](docs/assumption-log.md) | 6 hypotheses — status: 🔴/🟡/🟢/❌ | Updated per experiment |
+| [docs/risk-register.md](docs/risk-register.md) | 6 risks — status: Open/Monitored/Closed | Updated per sprint |
+| [docs/open-questions.md](docs/open-questions.md) | Product / Tech / GTM questions | Closed during Definition phase |
