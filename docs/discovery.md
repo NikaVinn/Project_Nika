@@ -48,7 +48,7 @@ The user "hires" this product to:
 ## 3. Value Proposition
 
 ### One-liner
-> **"Your personal style editor in your pocket — capsules, picks, and real advice, without the stylist price tag."**
+> **Shopping has never been so easy — ready-made capsules and picks for everyday inspiration.**
 
 ### Differentiation
 

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wardrobe Bureau — Design Kit (Warm Editorial)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF8F5;
+    --sand: #E2D5C3;
+    --sand-dark: #C9B99E;
+    --rose: #C4877A;
+    --charcoal: #1A1A1A;
+    --mid: #6B6560;
+    --light-text: #9E9790;
+    --burgundy: #6D2A32;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  code, .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* KIT NAV */
+  .kit-nav {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 220px;
+    background: var(--charcoal); color: var(--sand);
+    padding: 40px 24px; overflow-y: auto; z-index: 200;
+  }
+  .kit-nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cream); margin-bottom: 6px;
+  }
+  .kit-nav-sub { font-size: 11px; color: var(--sand-dark); letter-spacing: 0.05em; margin-bottom: 40px; }
+  .kit-nav a {
+    display: block; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--sand-dark); text-decoration: none; padding: 8px 0; transition: color 0.2s;
+  }
+  .kit-nav a:hover { color: var(--rose); }
+
+  .kit-main { margin-left: 220px; padding: 60px 60px 140px; max-width: 1200px; }
+
+  .kit-section { margin-bottom: 100px; }
+  .kit-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300; margin-bottom: 8px;
+  }
+  .kit-section-desc { font-size: 14px; color: var(--mid); margin-bottom: 40px; max-width: 600px; line-height: 1.7; }
+
+  /* COLOR SWATCHES */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 3px; }
+  .swatch { background: var(--sand); }
+  .swatch-color { height: 120px; }
+  .swatch-info { padding: 16px; background: var(--cream); border: 1px solid var(--sand); }
+  .swatch-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .swatch-hex { font-size: 12px; color: var(--mid); }
+  .swatch-role { font-size: 12px; color: var(--light-text); margin-top: 8px; line-height: 1.5; }
+
+  /* TYPE SPECIMENS */
+  .type-specimen { border-bottom: 1px solid var(--sand); padding: 32px 0; display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: baseline; }
+  .type-specimen:first-child { border-top: 1px solid var(--sand); }
+  .type-meta { font-size: 12px; color: var(--mid); line-height: 1.8; }
+  .type-meta .mono { color: var(--rose); }
+  .h-display-1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 72px; line-height: 1.05; }
+  .h-display-2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 48px; line-height: 1.1; }
+  .h-display-3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 24px; }
+  .h-quote { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 42px; line-height: 1.3; }
+  .h-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); }
+  .h-body { font-size: 16px; line-height: 1.8; color: var(--mid); max-width: 480px; }
+  .h-small { font-size: 14px; line-height: 1.7; color: var(--mid); }
+  .h-caption { font-size: 12px; letter-spacing: 0.05em; color: var(--light-text); }
+
+  /* BUTTONS */
+  .demo-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; padding: 40px; background: var(--sand); margin-bottom: 3px; }
+  .demo-row.dark { background: var(--charcoal); }
+  .btn-primary {
+    background: var(--charcoal); color: var(--cream);
+    padding: 16px 36px; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--rose); }
+  .btn-ghost {
+    background: transparent; color: var(--charcoal);
+    padding: 16px 0; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; border-bottom: 1px solid var(--charcoal);
+    cursor: pointer; transition: color 0.3s, border-color 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost:hover { color: var(--rose); border-color: var(--rose); }
+  .btn-outline {
+    display: inline-block; padding: 14px 36px; font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--charcoal); background: transparent;
+    color: var(--charcoal); cursor: pointer; transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { background: var(--charcoal); color: var(--cream); }
+  .btn-outline.on-dark { border-color: var(--cream); color: var(--cream); }
+  .btn-outline.on-dark:hover { background: var(--cream); color: var(--charcoal); }
+
+  .code-label { font-size: 11px; color: var(--light-text); margin-top: 8px; }
+
+  /* CARDS DEMO */
+  .card-demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
+  .product-card {
+    background: var(--sand); padding: 48px 40px; position: relative;
+  }
+  .product-card.alt { background: var(--cream); border: 1px solid var(--sand); }
+  .product-card-icon { font-size: 28px; margin-bottom: 24px; display: block; }
+  .product-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px; }
+  .product-card ul { list-style: none; }
+  .product-card li { font-size: 14px; line-height: 1.7; color: var(--mid); padding: 6px 0; border-bottom: 1px solid var(--sand-dark); }
+  .product-card li:last-child { border-bottom: none; }
+
+  .pricing-card { background: var(--sand); padding: 48px 40px; }
+  .pricing-card.featured { background: var(--charcoal); }
+  .pricing-card-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); margin-bottom: 16px; display: block; }
+  .pricing-card.featured .pricing-card-label { color: var(--sand); }
+  .pricing-card-price { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--charcoal); line-height: 1; }
+  .pricing-card.featured .pricing-card-price { color: var(--cream); }
+  .pricing-card-period { font-size: 14px; color: var(--mid); margin-bottom: 32px; }
+  .pricing-card.featured .pricing-card-period { color: var(--sand-dark); }
+  .pricing-features { list-style: none; margin-bottom: 40px; }
+  .pricing-features li { font-size: 14px; line-height: 1.7; color: var(--mid); padding: 8px 0; border-bottom: 1px solid var(--sand-dark); display: flex; gap: 12px; }
+  .pricing-card.featured .pricing-features li { color: var(--sand); border-color: rgba(255,255,255,0.1); }
+  .pricing-features li::before { content: '—'; color: var(--rose); }
+  .btn-pricing {
+    width: 100%; padding: 16px; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid var(--charcoal);
+    background: transparent; color: var(--charcoal); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.3s;
+  }
+  .btn-pricing:hover { background: var(--charcoal); color: var(--cream); }
+  .pricing-card.featured .btn-pricing { border-color: var(--cream); color: var(--cream); }
+  .pricing-card.featured .btn-pricing:hover { background: var(--cream); color: var(--charcoal); }
+  .pricing-demo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
+
+  /* IMAGE PLACEHOLDER */
+  .img-placeholder-demo { background: var(--sand-dark); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
+  .img-placeholder-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--light-text); }
+
+  /* QUOTE DEMO */
+  .quote-demo { background: var(--burgundy); padding: 80px 60px; text-align: center; }
+  .quote-demo p { font-family: 'Cormorant Garamond', serif; font-size: 36px; line-height: 1.3; font-weight: 300; font-style: italic; color: var(--cream); max-width: 700px; margin: 0 auto 24px; }
+  .quote-demo span { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand-dark); }
+
+  /* FOOTER DEMO */
+  .footer-demo { background: var(--charcoal); }
+  .footer-contact { padding: 80px 60px 48px; text-align: center; }
+  .footer-contact-tag {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 24px; display: block;
+  }
+  .footer-contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--cream);
+    margin-bottom: 40px;
+  }
+  .footer-contact-links { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+  .footer-contact-links a {
+    font-size: 14px; letter-spacing: 0.05em;
+    color: var(--sand-dark); text-decoration: none;
+    padding-bottom: 4px; border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .footer-contact-links a:hover { color: var(--rose); border-color: var(--rose); }
+  .footer-bottom {
+    padding: 32px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-demo-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand);
+  }
+  .footer-demo-links { display: flex; gap: 32px; }
+  .footer-demo-links a {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sand-dark); text-decoration: none;
+  }
+  .footer-demo-copy { font-size: 12px; color: var(--light-text); }
+
+  /* DIVIDER + PROBLEM ITEM DEMO */
+  .divider-demo { height: 1px; background: var(--sand); margin: 40px 0; }
+  .problem-item-demo { padding: 28px 0; border-top: 1px solid var(--sand); border-bottom: 1px solid var(--sand); display: flex; gap: 24px; align-items: flex-start; }
+  .problem-num-demo { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--rose); min-width: 24px; padding-top: 2px; }
+  .problem-text-demo { font-size: 15px; line-height: 1.7; color: var(--mid); }
+  .problem-text-demo strong { color: var(--charcoal); font-weight: 500; display: block; margin-bottom: 4px; }
+
+  /* SPACING SCALE */
+  .space-row { display: flex; align-items: center; gap: 20px; margin-bottom: 12px; }
+  .space-bar { background: var(--rose); height: 16px; }
+  .space-label { font-size: 12px; color: var(--mid); width: 160px; }
+
+  /* TOKEN TABLE */
+  table.tokens { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.tokens th { text-align: left; padding: 10px 16px; border-bottom: 2px solid var(--charcoal); font-weight: 500; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; color: var(--mid); }
+  table.tokens td { padding: 10px 16px; border-bottom: 1px solid var(--sand); }
+
+  @media (max-width: 900px) {
+    .kit-nav { display: none; }
+    .kit-main { margin-left: 0; padding: 40px 24px 100px; }
+    .type-specimen { grid-template-columns: 1fr; gap: 8px; }
+    .swatch-grid, .card-demo-grid, .pricing-demo-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="kit-nav">
+  <div class="kit-nav-logo">Wardrobe Bureau</div>
+  <div class="kit-nav-sub">Design Kit — Warm Editorial</div>
+  <a href="#colors">Colors</a>
+  <a href="#type">Typography</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#buttons">Buttons</a>
+  <a href="#cards">Cards</a>
+  <a href="#pricing">Pricing Cards</a>
+  <a href="#quote">Quote Block</a>
+  <a href="#dividers">Dividers &amp; Lists</a>
+  <a href="#images">Image Placeholders</a>
+  <a href="#footer">Footer</a>
+</nav>
+
+<main class="kit-main">
+
+  <div class="kit-section">
+    <h1 class="kit-section-title">Warm Editorial — Design Kit</h1>
+    <p class="kit-section-desc">Живой справочник токенов и компонентов, собранный из активного прототипа <code>prototype-a-editorial.html</code>. Источник правды — сам прототип; этот кит переиспользует его точные значения CSS.</p>
+  </div>
+
+  <!-- COLORS -->
+  <section class="kit-section" id="colors">
+    <h2 class="kit-section-title">Colors</h2>
+    <p class="kit-section-desc">Тёплая нейтральная база + один акцентный цвет, используемый точечно.</p>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--cream)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex mono">#FAF8F5</div>
+          <div class="swatch-role">Основной фон</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--sand)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sand</div>
+          <div class="swatch-hex mono">#E2D5C3</div>
+          <div class="swatch-role">Фон секций, карточки</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--sand-dark)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sand Dark</div>
+          <div class="swatch-hex mono">#C9B99E</div>
+          <div class="swatch-role">Плейсхолдеры изображений, бордеры</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--rose)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Rose</div>
+          <div class="swatch-hex mono">#C4877A</div>
+          <div class="swatch-role">Акцент — эйброу, курсив, hover</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--charcoal)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--cream)">Charcoal</div>
+          <div class="swatch-hex mono" style="color:var(--sand-dark)">#1A1A1A</div>
+          <div class="swatch-role" style="color:var(--sand-dark)">Текст, тёмные секции, CTA</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--mid)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Mid</div>
+          <div class="swatch-hex mono">#6B6560</div>
+          <div class="swatch-role">Body-текст</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--light-text)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Light Text</div>
+          <div class="swatch-hex mono">#9E9790</div>
+          <div class="swatch-role">Подписи, caption, fine print</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:var(--burgundy)"></div>
+        <div class="swatch-info">
+          <div class="swatch-name" style="color:var(--cream)">Burgundy</div>
+          <div class="swatch-hex mono" style="color:var(--sand-dark)">#6D2A32</div>
+          <div class="swatch-role" style="color:var(--sand-dark)">Full-bleed quote section background</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="kit-section" id="type">
+    <h2 class="kit-section-title">Typography</h2>
+    <p class="kit-section-desc">Cormorant Garamond для заголовков (300/400), DM Sans для текста (300/400/500).</p>
+
+    <div class="type-specimen">
+      <div class="type-meta">Display 1<br><span class="mono">Cormorant 300, 72px</span></div>
+      <div class="h-display-1">Your wardrobe, <em style="color:var(--rose);font-style:italic;">finally</em> working.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Display 2 / Section title<br><span class="mono">Cormorant 300, 48px</span></div>
+      <div class="h-display-2">Everything you need <em>with intention.</em></div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Display 3 / Card heading<br><span class="mono">Cormorant 400, 24px</span></div>
+      <div class="h-display-3">Ready-Made Capsules</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Quote<br><span class="mono">Cormorant 300 italic, 42px</span></div>
+      <div class="h-quote">"Your personal style editor in your pocket."</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Eyebrow / Tag<br><span class="mono">DM Sans, 11px, ls 0.2em</span></div>
+      <div class="h-eyebrow">Style subscription for women</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Body<br><span class="mono">DM Sans 300, 16px, lh 1.8</span></div>
+      <div class="h-body">Capsules, picks, and real advice.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Small text<br><span class="mono">DM Sans, 14px, lh 1.7</span></div>
+      <div class="h-small">Every guide accounts for different builds, ages, and lifestyles.</div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-meta">Caption / fine print<br><span class="mono">DM Sans, 12px</span></div>
+      <div class="h-caption">Full access from day 1 · Cancel anytime · No hidden charges</div>
+    </div>
+  </section>
+
+  <!-- SPACING -->
+  <section class="kit-section" id="spacing">
+    <h2 class="kit-section-title">Spacing</h2>
+    <p class="kit-section-desc">Секции живут на крупном ритме. Между блоками внутри секции — узкий gap (3px) создаёт эффект печатной сетки.</p>
+    <div class="space-row"><div class="space-bar" style="width:120px"></div><div class="space-label mono">120px — section padding-y</div></div>
+    <div class="space-row"><div class="space-bar" style="width:80px"></div><div class="space-label mono">80px — grid column gap</div></div>
+    <div class="space-row"><div class="space-bar" style="width:60px"></div><div class="space-label mono">60px — section padding-x</div></div>
+    <div class="space-row"><div class="space-bar" style="width:52px"></div><div class="space-label mono">52px — hero title → actions</div></div>
+    <div class="space-row"><div class="space-bar" style="width:32px"></div><div class="space-label mono">32px — heading → body</div></div>
+    <div class="space-row"><div class="space-bar" style="width:24px"></div><div class="space-label mono">24px — objections grid gap</div></div>
+    <div class="space-row"><div class="space-bar" style="width:3px"></div><div class="space-label mono">3px — card / image grid gap</div></div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="kit-section" id="buttons">
+    <h2 class="kit-section-title">Buttons</h2>
+    <p class="kit-section-desc">Без скруглений и теней. Три варианта: primary (заливка), ghost (подчёркивание), outline (обводка).</p>
+    <div class="demo-row">
+      <div>
+        <button class="btn-primary">Start for €19 / month</button>
+        <div class="code-label mono">.btn-primary — charcoal fill → hover rose</div>
+      </div>
+      <div>
+        <button class="btn-ghost">See what's inside</button>
+        <div class="code-label mono">.btn-ghost — underline only → hover rose</div>
+      </div>
+      <div>
+        <button class="btn-outline">Join Free Channel</button>
+        <div class="code-label mono">.btn-outline — bordered → hover fill charcoal</div>
+      </div>
+    </div>
+    <div class="demo-row dark">
+      <div>
+        <button class="btn-outline on-dark">Explore Premium</button>
+        <div class="code-label mono" style="color:var(--sand-dark)">.btn-outline on dark bg</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="kit-section" id="cards">
+    <h2 class="kit-section-title">Product Cards</h2>
+    <p class="kit-section-desc">2×2 сетка, чередование sand/cream, разделены узким gap вместо теней.</p>
+    <div class="card-demo-grid">
+      <div class="product-card">
+        <span class="product-card-icon">🌿</span>
+        <h3>Ready-Made Capsules</h3>
+        <ul>
+          <li>Seasonal capsule wardrobes</li>
+          <li>Occasion-based outfits</li>
+          <li>Body-type specific guides</li>
+        </ul>
+      </div>
+      <div class="product-card alt">
+        <span class="product-card-icon">🛍</span>
+        <h3>Real Shopping Picks</h3>
+        <ul>
+          <li>Direct links across price points</li>
+          <li>European stores, online &amp; offline</li>
+          <li>Budget-tagged every item</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="kit-section" id="pricing">
+    <h2 class="kit-section-title">Pricing Cards</h2>
+    <p class="kit-section-desc">Featured-вариант — инверсия в charcoal, чтобы выделить Premium-план.</p>
+    <div class="pricing-demo-grid">
+      <div class="pricing-card">
+        <span class="pricing-card-label">Basic</span>
+        <div class="pricing-card-price">€19</div>
+        <div class="pricing-card-period">per month · or €199/year</div>
+        <ul class="pricing-features">
+          <li>Full platform access</li>
+          <li>All guides &amp; seasonal capsules</li>
+        </ul>
+        <button class="btn-pricing">Start with Basic</button>
+      </div>
+      <div class="pricing-card featured">
+        <span class="pricing-card-label">Premium</span>
+        <div class="pricing-card-price">€600</div>
+        <div class="pricing-card-period">per month</div>
+        <ul class="pricing-features">
+          <li>Everything in Basic</li>
+          <li>1.5h personal consultation / month</li>
+        </ul>
+        <button class="btn-pricing">Start with Premium</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="kit-section" id="quote">
+    <h2 class="kit-section-title">Full-Bleed Quote Block</h2>
+    <p class="kit-section-desc">Тёмная "передышка" между светлыми секциями — charcoal фон, курсивный Cormorant.</p>
+    <div class="quote-demo">
+      <p>Shopping has never been so easy — ready-made capsules and picks for everyday inspiration.</p>
+    </div>
+  </section>
+
+  <!-- DIVIDERS -->
+  <section class="kit-section" id="dividers">
+    <h2 class="kit-section-title">Dividers &amp; Numbered Lists</h2>
+    <p class="kit-section-desc">Тонкие 1px линии sand-цвета заменяют карточки/тени для разделения контента.</p>
+    <div class="problem-item-demo">
+      <span class="problem-num-demo">01</span>
+      <div class="problem-text-demo">
+        <strong>A wardrobe full of clothes, yet nothing works together.</strong>
+        Pieces bought separately that never form a complete look.
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE PLACEHOLDERS -->
+  <section class="kit-section" id="images">
+    <h2 class="kit-section-title">Image Placeholders</h2>
+    <p class="kit-section-desc">До реальной съёмки — sand-dark блок с капсом-подписью по центру.</p>
+    <div style="max-width:320px;">
+      <div class="img-placeholder-demo">
+        <span class="img-placeholder-label">Lifestyle photo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <section class="kit-section" id="footer">
+    <h2 class="kit-section-title">Footer</h2>
+    <p class="kit-section-desc">Двухуровневый тёмный блок: сверху — центрированный контактный призыв (email + соцссылки), снизу — служебная строка (лого, правовые ссылки, копирайт), разделённые тонкой линией.</p>
+    <div class="footer-demo">
+      <div class="footer-contact">
+        <span class="footer-contact-tag">Get in touch</span>
+        <h3 class="footer-contact-title">Questions? We're here.</h3>
+        <div class="footer-contact-links">
+          <a href="mailto:nikavinnikova@gmail.com">nikavinnikova@gmail.com</a>
+          <a href="#">Telegram Channel</a>
+          <a href="#">Instagram</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-demo-logo">Wardrobe Bureau</div>
+        <div class="footer-demo-links">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+        <span class="footer-demo-copy">© 2026 Wardrobe Bureau</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENS TABLE -->
+  <section class="kit-section">
+    <h2 class="kit-section-title">Tokens Reference</h2>
+    <table class="tokens">
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+      <tr><td class="mono">--cream</td><td class="mono">#FAF8F5</td><td>Base background</td></tr>
+      <tr><td class="mono">--sand</td><td class="mono">#E2D5C3</td><td>Section backgrounds, cards</td></tr>
+      <tr><td class="mono">--sand-dark</td><td class="mono">#C9B99E</td><td>Image placeholders, borders</td></tr>
+      <tr><td class="mono">--rose</td><td class="mono">#C4877A</td><td>Accent — eyebrows, highlights, hover</td></tr>
+      <tr><td class="mono">--charcoal</td><td class="mono">#1A1A1A</td><td>Primary text, dark sections, CTA</td></tr>
+      <tr><td class="mono">--mid</td><td class="mono">#6B6560</td><td>Body text, secondary content</td></tr>
+      <tr><td class="mono">--light-text</td><td class="mono">#9E9790</td><td>Labels, captions, fine print</td></tr>
+      <tr><td class="mono">--burgundy</td><td class="mono">#6D2A32</td><td>Full-bleed quote section background</td></tr>
+    </table>
+  </section>
+
+</main>
+
+</body>
+</html>

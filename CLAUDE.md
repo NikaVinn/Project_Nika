@@ -4,34 +4,96 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**TestLand** is a static landing page with no build tools, frameworks, or dependencies. It runs directly in any browser.
+**Wardrobe Bureau** is a style subscription platform for women (ages 25–50, Europe). It consists of a static marketing landing page (current stage) that will eventually connect to an auth layer and LMS with gated content.
+
+**Current stage:** Design iteration — building and refining the landing page.
 
 ## Running the Project
 
-Open `index.html` directly in a browser — no server needed. In VS Code, use the **Live Server** extension for auto-reload on save.
+- `prototype-a-editorial.html` — **active design prototype** (Warm Editorial direction)
 
-## Architecture
+To open in browser on Windows with Cyrillic path — use PowerShell:
+```powershell
+Invoke-Item "c:\Users\nikav\OneDrive\Рабочий стол\Project Nika\prototype-a-editorial.html"
+```
 
-Three files make up the entire site:
+**Never use the Bash `start` command** for files in this directory — the Cyrillic characters in the path (`Рабочий стол`) cause it to open the folder instead of the file. Always use `Invoke-Item` in PowerShell.
 
-- [index.html](index.html) — page structure with 5 sections: Navbar, Hero, Features, Pricing, Contact, Footer. All sections use anchor IDs for smooth-scroll navigation.
-- [styles.css](styles.css) — all styles. Uses CSS custom properties (defined in `:root`) for the color palette. Layout is CSS Grid (`features-grid`, `pricing-grid`) and Flexbox (navbar). Responsive breakpoint at `768px`.
-- [script.js](script.js) — vanilla JS only. Handles smooth scroll, contact form submission (currently just an alert), scroll-triggered `fadeInUp` animations via `IntersectionObserver`, and pricing button click alerts.
+No server needed — static files open directly in browser.
 
-## Design Tokens (CSS Variables)
+## Chosen Design Direction: Warm Editorial (Prototype A)
+
+**Decision made June 2026.** After evaluating 5 approaches (Editorial, Minimalist, Narrative Scroll, Bento Grid, Conversational), **Warm Editorial** was selected as the primary direction.
+
+### Design Tokens
 
 | Variable | Value | Usage |
 |---|---|---|
-| `--primary-color` | `#6366f1` | Indigo — buttons, links, accents |
-| `--secondary-color` | `#ec4899` | Pink — hero gradient end, hover states |
-| `--dark-bg` | `#0f172a` | Footer background |
-| `--light-bg` | `#f8fafc` | Features & Contact section backgrounds |
+| `--cream` | `#FAF8F5` | Base background |
+| `--sand` | `#E2D5C3` | Section backgrounds, cards |
+| `--sand-dark` | `#C9B99E` | Image placeholders, borders |
+| `--rose` | `#C4877A` | Accent — eyebrows, highlights, hover states |
+| `--charcoal` | `#1A1A1A` | Primary text, dark sections, nav CTA |
+| `--mid` | `#6B6560` | Body text, secondary content |
+| `--light-text` | `#9E9790` | Labels, captions, fine print |
 
-## Key Patterns
+### Typography
 
-- The `.featured` class on a `.pricing-card` applies the highlighted/scaled style to the middle pricing tier.
-- Scroll animations work by setting `opacity: 0` on `.feature-card` and `.pricing-card` in JS, then applying `fadeInUp` via `IntersectionObserver` when elements enter the viewport.
-- The contact form submission is not wired to any backend — it shows an alert and resets the form.
+| Role | Font | Weight |
+|---|---|---|
+| Display / Headlines | Cormorant Garamond | 300, 400, 600 (+ italic variants) |
+| Body / UI | DM Sans | 300, 400, 500 |
+
+### Page Structure (8 sections)
+
+1. **Hero** — 2-column grid: left = headline + CTA, right = 3 editorial image placeholders
+2. **Problem Validation** — left: section title, right: 4 numbered problem items with dividers
+3. **Quote** — full-bleed dark section with italic brand promise
+4. **Product Deep-Dive** — 2×2 card grid showing 4 feature categories
+5. **Objections** — 2×2 grid, italic questions + plain answers
+6. **Pricing** — left: intro text, right: stacked Basic + Premium cards
+7. **CTA** — 2-column: image left, CTA block right
+8. **Secondary CTA + FAQ + Footer**
+
+### Key Visual Patterns
+
+- Nav: fixed, `cream` bg, `charcoal` logo (Cormorant), uppercase nav links, solid `charcoal` CTA button
+- Buttons: `.btn-primary` = charcoal fill, hover → rose; `.btn-ghost` = transparent, bottom border only
+- Section rhythm: generous padding (120px top/bottom), 60px horizontal
+- All headlines: Cormorant Garamond, `font-weight: 300`, `line-height: 1.05–1.1`
+- Eyebrows/tags: 11px, `letter-spacing: 0.2em`, uppercase, rose color
+- Image placeholders: `var(--sand-dark)` background with small uppercase label
+- Full-bleed quote section: `var(--charcoal)` background, italic Cormorant, cream text
+- Objections section: `var(--sand)` background
+
+## Architecture
+
+| File/Folder | Purpose |
+|---|---|
+| `prototype-a-editorial.html` | Active landing page prototype — all HTML + CSS inline |
+| `docs/` | Active documentation — discovery, personas, design research, product notes |
+| `archive/` | Outdated files kept for reference (wireframe, old placeholder, legacy code) |
+| `archive/source-drafts/` | Original `.docx` source files that have been converted to `docs/` |
+
+## Naming Convention & Archive Rules
+
+- **Active docs** live in `docs/` with plain kebab-case names (e.g. `discovery.md`)
+- **Outdated files** move to `archive/` — folder name signals status, no renaming needed
+- **Original source drafts** (`.docx`, `.pdf`) move to `archive/source-drafts/` once converted to `.md`
+- **Temp files** (`~$*`, `*.tmp`) are Word lock files — delete on sight, never commit
+
+## Documentation Map
+
+| Doc | Contents |
+|---|---|
+| [docs/discovery.md](docs/discovery.md) | Full discovery: problem, JTBD, lean canvas, metrics |
+| [docs/personas.md](docs/personas.md) | Magda (PL) + Anna (EU) personas |
+| [docs/competitive-landscape.md](docs/competitive-landscape.md) | Market map, positioning |
+| [docs/landing-page-design-research.md](docs/landing-page-design-research.md) | Design approach research + decision rationale |
+| [docs/product-delivery-model.md](docs/product-delivery-model.md) | Telegram channel + bot + payments — product delivery notes |
+| [docs/assumption-log.md](docs/assumption-log.md) | 6 hypotheses with validation status |
+| [docs/risk-register.md](docs/risk-register.md) | 6 risks with mitigation plans |
+| [docs/open-questions.md](docs/open-questions.md) | Open product/tech/GTM questions |
 
 ## Git & GitHub
 

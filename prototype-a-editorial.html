@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype A — Warm Editorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF8F5;
+    --sand: #E2D5C3;
+    --sand-dark: #C9B99E;
+    --rose: #C4877A;
+    --charcoal: #1A1A1A;
+    --mid: #6B6560;
+    --light-text: #9E9790;
+    --burgundy: #6D2A32;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 60px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--sand);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--charcoal);
+  }
+  .nav-links { display: flex; gap: 40px; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--mid); text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--charcoal); color: var(--cream);
+    padding: 12px 28px; text-decoration: none; transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--rose); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 88px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 60px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 32px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; line-height: 1.05; font-weight: 300;
+    color: var(--charcoal); margin-bottom: 32px;
+  }
+  .hero-title em { font-style: italic; color: var(--burgundy); }
+  .hero-subtitle {
+    font-size: 16px; line-height: 1.8; color: var(--mid);
+    max-width: 400px; margin-bottom: 52px;
+  }
+  .hero-actions { display: flex; gap: 20px; align-items: center; }
+  .btn-primary {
+    background: var(--charcoal); color: var(--cream);
+    padding: 16px 36px; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--rose); }
+  .btn-ghost {
+    background: transparent; color: var(--charcoal);
+    padding: 16px 0; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: none; border-bottom: 1px solid var(--charcoal);
+    cursor: pointer; transition: color 0.3s, border-color 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-ghost:hover { color: var(--rose); border-color: var(--rose); }
+
+  .hero-right {
+    display: flex;
+    gap: 3px;
+    background: var(--sand);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .hero-right::-webkit-scrollbar { display: none; }
+  .hero-img {
+    background: var(--sand-dark);
+    position: relative; overflow: hidden;
+    flex: 0 0 60%;
+    scroll-snap-align: start;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--light-text);
+  }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px; background: var(--sand); margin: 0 60px;
+  }
+
+  /* PROBLEM */
+  .problem {
+    padding: 120px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .problem-left {}
+  .section-tag {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 24px; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; line-height: 1.1; font-weight: 300; color: var(--charcoal);
+  }
+  .section-title em { font-style: italic; }
+  .problem-right {
+    display: flex; flex-direction: column; gap: 0;
+    padding-top: 12px;
+  }
+  .problem-item {
+    padding: 28px 0;
+    border-bottom: 1px solid var(--sand);
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .problem-item:first-child { border-top: 1px solid var(--sand); }
+  .problem-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; color: var(--rose); min-width: 24px; padding-top: 2px;
+  }
+  .problem-text {
+    font-size: 15px; line-height: 1.7; color: var(--mid);
+  }
+  .problem-text strong { color: var(--charcoal); font-weight: 500; display: block; margin-bottom: 4px; }
+
+  /* FULL-BLEED QUOTE */
+  .quote-section {
+    background: var(--burgundy);
+    padding: 100px 60px;
+    text-align: center;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; line-height: 1.3; font-weight: 300; font-style: italic;
+    color: var(--cream); max-width: 760px; margin: 0 auto 32px;
+  }
+  .quote-attr {
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--sand-dark);
+  }
+
+  /* PRODUCT */
+  .product {
+    padding: 120px 60px;
+  }
+  .product-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px;
+    align-items: center;
+  }
+  .product-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400; line-height: 1.5;
+    color: var(--charcoal);
+  }
+  .product-carousel {
+    display: flex; gap: 3px; margin-top: 24px;
+    background: var(--sand);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .product-carousel::-webkit-scrollbar { display: none; }
+  .product-carousel-img {
+    background: var(--sand-dark);
+    flex: 0 0 60%;
+    aspect-ratio: 4/3;
+    scroll-snap-align: start;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+  }
+  .product-card {
+    background: var(--sand);
+    padding: 48px 40px;
+    position: relative;
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .product-card:nth-child(even) { background: var(--cream); border: 1px solid var(--sand); }
+  .product-card-body { flex: 1; }
+  .product-card-carousel {
+    display: flex; gap: 3px;
+    flex: 0 0 160px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .product-card-carousel::-webkit-scrollbar { display: none; }
+  .product-card-img {
+    background: var(--sand-dark);
+    aspect-ratio: 3/4;
+    width: 130px; flex: 0 0 130px;
+    scroll-snap-align: start;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400; color: var(--charcoal); margin-bottom: 16px;
+  }
+  .product-card ul { list-style: none; }
+  .product-card li {
+    font-size: 14px; line-height: 1.7; color: var(--mid);
+    padding: 6px 0; border-bottom: 1px solid var(--sand-dark);
+  }
+  .product-card li:last-child { border-bottom: none; }
+
+  /* OBJECTIONS */
+  .objections {
+    background: var(--sand);
+    padding: 120px 60px;
+  }
+  .objections-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px; margin-top: 60px;
+  }
+  .objection-item {}
+  .objection-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; font-style: italic;
+    color: var(--charcoal); margin-bottom: 16px;
+  }
+  .objection-a {
+    font-size: 14px; line-height: 1.8; color: var(--mid);
+  }
+
+  /* PRICING */
+  .pricing {
+    padding: 120px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  }
+  .pricing-intro { padding-right: 80px; }
+  .pricing-note {
+    font-size: 14px; line-height: 1.8; color: var(--mid); margin-top: 24px;
+  }
+  .pricing-cards { display: flex; flex-direction: column; gap: 3px; }
+  .pricing-card {
+    background: var(--sand); padding: 48px 40px;
+  }
+  .pricing-card.featured { background: var(--charcoal); }
+  .pricing-card-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 16px; display: block;
+  }
+  .pricing-card.featured .pricing-card-label { color: var(--sand); }
+  .pricing-card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 300; color: var(--charcoal); line-height: 1;
+  }
+  .pricing-card.featured .pricing-card-price { color: var(--cream); }
+  .pricing-card-period { font-size: 14px; color: var(--mid); margin-bottom: 32px; }
+  .pricing-card.featured .pricing-card-period { color: var(--sand-dark); }
+  .pricing-features { list-style: none; margin-bottom: 40px; }
+  .pricing-features li {
+    font-size: 14px; line-height: 1.7; color: var(--mid);
+    padding: 8px 0; border-bottom: 1px solid var(--sand-dark);
+    display: flex; gap: 12px;
+  }
+  .pricing-card.featured .pricing-features li { color: var(--sand); border-color: rgba(255,255,255,0.1); }
+  .pricing-features li::before { content: '—'; color: var(--rose); }
+  .btn-pricing {
+    width: 100%; padding: 16px; font-size: 13px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid var(--charcoal);
+    background: transparent; color: var(--charcoal); cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: all 0.3s;
+  }
+  .btn-pricing:hover { background: var(--charcoal); color: var(--cream); }
+  .pricing-card.featured .btn-pricing {
+    border-color: var(--cream); color: var(--cream);
+  }
+  .pricing-card.featured .btn-pricing:hover { background: var(--cream); color: var(--charcoal); }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 120px 60px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .cta-image {
+    background: var(--sand-dark);
+    aspect-ratio: 4/5;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cta-content {}
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; line-height: 1.1; font-weight: 300; margin-bottom: 24px;
+  }
+  .cta-title em { font-style: italic; color: var(--rose); }
+  .cta-sub { font-size: 15px; line-height: 1.8; color: var(--mid); margin-bottom: 40px; }
+  .cta-trust {
+    font-size: 12px; letter-spacing: 0.05em; color: var(--light-text); margin-top: 20px;
+  }
+
+  /* SECONDARY CTA */
+  .secondary-cta {
+    background: var(--sand);
+    padding: 80px 60px;
+    text-align: center;
+  }
+  .secondary-cta p {
+    font-size: 15px; line-height: 1.8; color: var(--mid);
+    max-width: 480px; margin: 0 auto 32px;
+  }
+  .secondary-cta h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; margin-bottom: 16px;
+  }
+  .btn-outline {
+    display: inline-block; padding: 14px 36px; font-size: 13px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--charcoal); background: transparent;
+    color: var(--charcoal); cursor: pointer; transition: all 0.3s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { background: var(--charcoal); color: var(--cream); }
+
+  /* FAQ */
+  .faq { padding: 120px 60px; }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 80px; margin-top: 60px; }
+  .faq-item { padding: 28px 0; border-bottom: 1px solid var(--sand); }
+  .faq-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 400; color: var(--charcoal); margin-bottom: 12px;
+  }
+  .faq-a { font-size: 14px; line-height: 1.8; color: var(--mid); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); color: var(--sand);
+  }
+  .footer-contact {
+    padding: 100px 60px 60px;
+    text-align: center;
+  }
+  .footer-contact-tag {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 24px; display: block;
+  }
+  .footer-contact-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; color: var(--cream);
+    margin-bottom: 40px;
+  }
+  .footer-contact-links {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+  }
+  .footer-contact-links a {
+    font-size: 14px; letter-spacing: 0.05em;
+    color: var(--sand-dark); text-decoration: none;
+    padding-bottom: 4px; border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .footer-contact-links a:hover { color: var(--rose); border-color: var(--rose); }
+  .footer-bottom {
+    padding: 32px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a {
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sand-dark); text-decoration: none;
+  }
+  .footer-copy { font-size: 12px; color: var(--light-text); }
+
+  /* LABEL BADGE */
+  .prototype-badge {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: var(--rose); color: white;
+    padding: 8px 16px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="prototype-badge">Prototype A — Warm Editorial</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Wardrobe Bureau</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#plans">Plans</a>
+    <a href="#contacts">Contacts</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-eyebrow">Style subscription for women</span>
+    <h1 class="hero-title">Your wardrobe,<br><em>finally</em><br>working for you.</h1>
+    <p class="hero-subtitle">Capsules, picks, and real advice. Everything you need to get dressed with confidence, every day.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Start for €19 / month</button>
+      <button class="btn-ghost">See what's inside</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1590330297626-d7aff25a0431?auto=format&fit=crop&w=800&q=80" alt="Woman in black jacket and white pants, streetstyle"></div>
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1616406432452-07bc5938759d?auto=format&fit=crop&w=800&q=80" alt="Brown leather loafers detail"></div>
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1528120369764-0423708119ae?auto=format&fit=crop&w=800&q=80" alt="Two women in coats, streetstyle"></div>
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&w=800&q=80" alt="Woman in black blazer and tailored trousers, chic streetstyle"></div>
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Minimalist capsule wardrobe rack with neutral tones"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROBLEM -->
+<section class="problem" id="about">
+  <div class="problem-left">
+    <span class="section-tag">Sound familiar?</span>
+    <h2 class="section-title">You have a full<br>wardrobe and still<br><em>nothing to wear.</em></h2>
+  </div>
+  <div class="problem-right">
+    <div class="problem-item">
+      <span class="problem-num">01</span>
+      <div class="problem-text">
+        <strong>A wardrobe full of clothes, yet nothing works together.</strong>
+        Pieces bought separately that never form a complete look.
+      </div>
+    </div>
+    <div class="problem-item">
+      <span class="problem-num">02</span>
+      <div class="problem-text">
+        <strong>Money spent on impulse — and regretted.</strong>
+        Trends that don't fit your life, items worn once and forgotten.
+      </div>
+    </div>
+    <div class="problem-item">
+      <span class="problem-num">03</span>
+      <div class="problem-text">
+        <strong>Hours lost searching for the right outfit.</strong>
+        Every morning a small battle, every shopping trip a gamble.
+      </div>
+    </div>
+    <div class="problem-item">
+      <span class="problem-num">04</span>
+      <div class="problem-text">
+        <strong>Advice that doesn't fit your body or budget.</strong>
+        Generic guides for someone who isn't you.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="quote-text">Shopping has never been so easy — ready-made capsules and picks for everyday inspiration.</p>
+</div>
+
+<!-- PRODUCT -->
+<section class="product">
+  <div class="product-header">
+    <div>
+      <span class="section-tag">What's inside</span>
+      <h2 class="section-title">Everything you need<br>to dress <em>with intention.</em></h2>
+    </div>
+    <div>
+      <p class="product-intro">A curated library of guides, capsules, and weekly picks.</p>
+      <div class="product-carousel">
+        <div class="product-carousel-img"><div class="hero-img-placeholder">Guide preview</div></div>
+        <div class="product-carousel-img"><div class="hero-img-placeholder">Capsule flatlay</div></div>
+        <div class="product-carousel-img"><div class="hero-img-placeholder">Weekly pick</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-card-body">
+        <h3>Ready-Made Capsules</h3>
+        <ul>
+          <li>Seasonal capsule wardrobes</li>
+          <li>Occasion-based outfits (office, travel, weekend)</li>
+          <li>Body-type specific guides</li>
+        </ul>
+      </div>
+      <div class="product-card-carousel">
+        <div class="product-card-img"><div class="hero-img-placeholder">Capsule wardrobe</div></div>
+        <div class="product-card-img"><div class="hero-img-placeholder">Seasonal edit</div></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-body">
+        <h3>Real Shopping Picks</h3>
+        <ul>
+          <li>Direct links across mass, mid & luxury</li>
+          <li>European stores, online & offline</li>
+          <li>Budget-tagged every item</li>
+        </ul>
+      </div>
+      <div class="product-card-carousel">
+        <div class="product-card-img"><div class="hero-img-placeholder">Shopping picks</div></div>
+        <div class="product-card-img"><div class="hero-img-placeholder">Store link</div></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-body">
+        <h3>Weekly Channel</h3>
+        <ul>
+          <li>Telegram channel, members only</li>
+          <li>Weekly video reviews from shops</li>
+          <li>Trend breakdowns you can actually use</li>
+        </ul>
+      </div>
+      <div class="product-card-carousel">
+        <div class="product-card-img"><div class="hero-img-placeholder">Weekly channel</div></div>
+        <div class="product-card-img"><div class="hero-img-placeholder">Video review</div></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-body">
+        <h3>Premium: Personal Stylist</h3>
+        <ul>
+          <li>1.5h personal consultation / month</li>
+          <li>Wardrobe audit</li>
+          <li>Private chat — personalized answers</li>
+        </ul>
+      </div>
+      <div class="product-card-carousel">
+        <div class="product-card-img"><div class="hero-img-placeholder">Personal stylist</div></div>
+        <div class="product-card-img"><div class="hero-img-placeholder">Wardrobe audit</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTIONS -->
+<section class="objections">
+  <span class="section-tag">Before you ask</span>
+  <h2 class="section-title">We've heard every hesitation.<br><em>Here are the honest answers.</em></h2>
+  <div class="objections-grid">
+    <div class="objection-item">
+      <p class="objection-q">"Will this work for my body type?"</p>
+      <p class="objection-a">Every guide accounts for different builds, ages, and lifestyles. We explain why specific styles work — not just what looks good on a model.</p>
+    </div>
+    <div class="objection-item">
+      <p class="objection-q">"Is this just pretty pictures?"</p>
+      <p class="objection-a">No. Every recommendation includes direct shopping links across all price points. You get the exact items to buy, not a mood board.</p>
+    </div>
+    <div class="objection-item">
+      <p class="objection-q">"Can I actually use this advice tomorrow?"</p>
+      <p class="objection-a">Yes. Ready-made outfits you can wear the next day. Practical solutions, not theory or runway fantasy.</p>
+    </div>
+    <div class="objection-item">
+      <p class="objection-q">"Will this pay for itself?"</p>
+      <p class="objection-a">One avoided impulse purchase covers your monthly subscription. Most members tell us they started spending less and wearing more within weeks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="plans">
+  <div class="pricing-intro">
+    <span class="section-tag">Plans</span>
+    <h2 class="section-title">Choose your<br><em>level of guidance.</em></h2>
+    <p class="pricing-note">BASIC gives you the full library — every guide, every capsule, every weekly pick. PREMIUM adds a personal stylist: you, your wardrobe, your body, your life.</p>
+  </div>
+  <div class="pricing-cards">
+    <div class="pricing-card">
+      <span class="pricing-card-label">Basic</span>
+      <div class="pricing-card-price">€19</div>
+      <div class="pricing-card-period">per month · or €199/year</div>
+      <ul class="pricing-features">
+        <li>Full platform access</li>
+        <li>All guides & seasonal capsules</li>
+        <li>Members Telegram channel</li>
+        <li>Weekly video reviews</li>
+      </ul>
+      <button class="btn-pricing">Start with Basic</button>
+    </div>
+    <div class="pricing-card featured">
+      <span class="pricing-card-label">Premium</span>
+      <div class="pricing-card-price">€600</div>
+      <div class="pricing-card-period">per month</div>
+      <ul class="pricing-features">
+        <li>Everything in Basic</li>
+        <li>1.5h personal consultation / month</li>
+        <li>Personal wardrobe review</li>
+        <li>Private chat — personalised answers</li>
+        <li>Custom picks for your body & budget</li>
+      </ul>
+      <button class="btn-pricing">Start with Premium</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-image">
+    <div class="hero-img-placeholder" style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#9E9790;">Lifestyle photo</div>
+  </div>
+  <div class="cta-content">
+    <span class="section-tag">Start today</span>
+    <h2 class="cta-title">Get dressed with<br><em>confidence.</em><br>Starting tomorrow.</h2>
+    <p class="cta-sub">Full access from day one. Cancel anytime. No hidden charges.</p>
+    <button class="btn-primary" style="margin-bottom:16px;display:block;width:100%;">Start for €19 / month</button>
+    <button class="btn-outline" style="display:block;width:100%;">Explore Premium — €600/month</button>
+    <p class="cta-trust">Full access from day 1 · Cancel anytime · No hidden charges</p>
+  </div>
+</section>
+
+<!-- SECONDARY CTA -->
+<div class="secondary-cta">
+  <h3>Not ready to subscribe yet?</h3>
+  <p>Join our free Telegram channel for weekly styling tips, shop reviews, and trend breakdowns — no strings attached.</p>
+  <button class="btn-outline">Join Free Channel</button>
+</div>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <span class="section-tag">FAQ</span>
+  <h2 class="section-title">Frequently asked.</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <p class="faq-q">How do I pay?</p>
+      <p class="faq-a">On the website you can pay with Apple Pay or by entering your card details. We also accept payment via Polish card, Revolut/Wise, and PayPal. For alternative payment details, message us on Telegram @vi_nika or email nikavinnikova@gmail.com.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I get access to the chat?</p>
+      <p class="faq-a">Chat access is sent to the email you provided at checkout. Follow the link in the email to join. If you don't see it, check your spam or promotions folder. In the email, click "General Channel" to join — and also "Chat" if you purchased the Pro plan. If you run into issues, message us on Telegram @vi_nika or email nikavinnikova@gmail.com, and include a screenshot of your payment.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does this work for non-standard body types?</p>
+      <p class="faq-a">Yes. Every guide includes options for different builds. Premium offers fully personalised guidance for your exact body.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I cancel anytime?</p>
+      <p class="faq-a">Yes. No contracts, no lock-in. Cancel whenever, and you keep access until the end of your billing period.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What language is the content in?</p>
+      <p class="faq-a">All content is in English, designed for women across Europe.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What if recommendations don't work for me?</p>
+      <p class="faq-a">Start with the free Telegram channel. If you want personalised help, Premium is designed exactly for that.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacts">
+  <div class="footer-contact">
+    <span class="footer-contact-tag">Get in touch</span>
+    <h3 class="footer-contact-title">Questions? We're here.</h3>
+    <div class="footer-contact-links">
+      <a href="mailto:nikavinnikova@gmail.com">nikavinnikova@gmail.com</a>
+      <a href="#" target="_blank" rel="noopener">Telegram Channel</a>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-logo">Wardrobe Bureau</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+    <span class="footer-copy">© 2026 Wardrobe Bureau</span>
+  </div>
+</footer>
+
+</body>
+</html>

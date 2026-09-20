@@ -10,7 +10,28 @@
       "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"User\"\\); cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; ssh-keyscan github.com >> \"C:\\\\Users\\\\nikav\\\\.ssh\\\\known_hosts\"; git push -u origin main)",
       "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"User\"\\); $env:GIT_SSH_COMMAND = \"C:/Program Files/Git/usr/bin/ssh.exe\"; cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; & \"C:/Program Files/Git/usr/bin/ssh-keyscan.exe\" github.com >> \"C:\\\\Users\\\\nikav\\\\.ssh\\\\known_hosts\"; git push -u origin main)",
       "PowerShell($env:PATH = [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"PATH\",\"User\"\\); $env:GIT_SSH_COMMAND = '\"C:/Program Files/Git/usr/bin/ssh.exe\"'; & \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh-keyscan.exe\" github.com >> \"C:\\\\Users\\\\nikav\\\\.ssh\\\\known_hosts\"; cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git -c core.sshCommand=\"C:/Program Files/Git/usr/bin/ssh.exe\" push -u origin main)",
-      "PowerShell(& \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh-keyscan.exe\" github.com 2>&1)"
+      "PowerShell(& \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh-keyscan.exe\" github.com 2>&1)",
+      "PowerShell(cd \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; $env:GIT_SSH = \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh.exe\"; git add docs/; git status)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\Git\\\\bin\"; $env:GIT_SSH = \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh.exe\"; Set-Location \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git add docs/; git status)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\Git\\\\bin\"; $env:GIT_SSH = \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh.exe\"; Set-Location \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git checkout main; git status)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\Git\\\\bin\"; $env:GIT_SSH = \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh.exe\"; Set-Location \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git stash; git checkout main; git branch)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\Git\\\\bin\"; Set-Location \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; git branch -a)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\Git\\\\bin\"; $env:GIT_SSH = \"C:\\\\Program Files\\\\Git\\\\usr\\\\bin\\\\ssh.exe\"; Set-Location \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\"; gh auth status)",
+      "PowerShell(winget install --id GitHub.cli -e --source winget)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Program Files\\\\GitHub CLI\"; gh --version)",
+      "Bash(find /mnt/c/Users/nikav -name \"gh.exe\" 2>/dev/null | head -5)",
+      "Read(//mnt/c/Users/**)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(start \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\\\\index.html\")",
+      "Bash(start \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\\\\wireframe.html\")",
+      "PowerShell(Invoke-Item \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\\\\wireframe.html\")",
+      "WebSearch",
+      "Bash(mkdir -p \"$HOME/.claude/skills/ui-design-review\")",
+      "PowerShell(Invoke-Item \"c:\\\\Users\\\\nikav\\\\OneDrive\\\\Рабочий стол\\\\Project Nika\\\\docs\\\\design-kit.html\")"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\nikav\\.claude\\skills"
     ]
   }
 }
